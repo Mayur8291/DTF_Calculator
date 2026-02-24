@@ -1,6 +1,9 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npx vite build"
+
+[build.environment]
+  NPM_FLAGS = "--include=dev"
 
 [[headers]]
   for = "/*"
