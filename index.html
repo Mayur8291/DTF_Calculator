@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1419">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>DTF Cost Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>DTF Cost Calculator</h1>
+      <p class="subtitle">Upload artwork → Remove background → Resize → Get cost</p>
+      <div class="flow-diagram" aria-label="Background removal flow">
+        <span class="flow-step">Upload</span>
+        <span class="flow-arrow" aria-hidden="true">↓</span>
+        <span class="flow-step">SAM segmentation</span>
+        <span class="flow-arrow" aria-hidden="true">↓</span>
+        <span class="flow-step">Refine mask</span>
+        <span class="flow-arrow" aria-hidden="true">↓</span>
+        <span class="flow-step">Alpha matte smoothing</span>
+        <span class="flow-arrow" aria-hidden="true">↓</span>
+        <span class="flow-step">Export</span>
+      </div>
+    </header>
+
+    <section class="upload-section">
+      <label class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+        <span class="upload-icon">📁</span>
+        <span class="upload-text"><span class="upload-text-desktop">Drop images here or click to upload</span><span class="upload-text-mobile">Tap to upload images</span></span>
+        <span class="upload-hint">PNG, JPG, WebP supported</span>
+      </label>
+    </section>
+
+    <section class="artworks-section">
+      <h2>Artworks</h2>
+      <div id="artworkList" class="artwork-list"></div>
+    </section>
+
+    <section class="total-section">
+      <div class="total-row">
+        <span class="total-label">Total DTF cost</span>
+        <span id="totalCost" class="total-value">₹0.00</span>
+      </div>
+      <p class="formula-hint">Formula: (Height + 1) × (Width + 1) × 0.8 per artwork</p>
+    </section>
+  </div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
